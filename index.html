@@ -123,14 +123,66 @@
         }
         #lightbox img { max-width: 90%; max-height: 90%; border-radius: 4px; box-shadow: 0 0 50px rgba(0,0,0,0.5); }
 
+        /* --- Mobile Tweaks (Side-by-Side Hero) --- */
         @media (max-width: 768px) {
-            .hero { flex-direction: column; text-align: center; }
-            .hero-content { text-align: center; align-items: center; }
-            .hero-image { height: 350px; }
-            .hero-image-wrapper::after { display: none; }
+            /* إجبار قسم الغلاف ليكون جنباً إلى جنب */
+            .hero { 
+                flex-direction: row; 
+                padding: 40px 0; 
+                gap: 15px; 
+                align-items: center;
+            }
+            
+            /* تعديل النص ليأخذ نصف الشاشة ويصغر حجمه */
+            .hero-content { 
+                flex: 1.2; 
+                text-align: right; 
+                padding-left: 10px;
+            }
+            .student-name { 
+                font-size: 0.8rem; 
+                letter-spacing: 3px; 
+                margin-bottom: 10px;
+                text-align: left;
+            }
+            .en-quote { 
+                font-size: 1rem; 
+                margin-bottom: 15px;
+                text-align: left;
+            }
+            .hero-content h1 { 
+                font-size: 1.8rem; 
+                margin-bottom: 15px; 
+            }
+            .hero-content p { 
+                font-size: 0.85rem; 
+                line-height: 1.6;
+                margin-bottom: 20px; 
+            }
+            .btn-primary {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+                width: 100%;
+            }
+            
+            /* تعديل الصورة لتأخذ النصف الثاني */
+            .hero-image-wrapper { 
+                flex: 1; 
+                display: flex;
+            }
+            .hero-image { 
+                height: 300px; 
+                width: 100%;
+                border-radius: 4px;
+            }
+            .hero-image-wrapper::after { display: none; } 
+
+            /* باقي إعدادات الموبايل */
+            .soundtrack-wrapper { padding: 0 10px; }
             .gallery-grid { display: flex; flex-direction: column; }
             .gallery-item { height: 280px; }
             .candid-strip img { height: 200px; }
+            .guestbook-section { padding: 30px 20px; }
         }
     </style>
 </head>
@@ -158,7 +210,7 @@
     </div>
 
     <div class="section-header">
-        <h2> 2026</h2>
+        <h2>ألبوم 2026</h2>
         <div class="en-subtitle">Visual Diary</div>
     </div>
     <section class="gallery-grid">
@@ -187,7 +239,7 @@
 
     <div class="candid-strip-container">
         <div class="section-header" style="margin: 20px 0;">
-            <h2 style="font-size: 1.8rem;"></h2>
+            <h2 style="font-size: 1.8rem;">لقطات عفوية</h2>
             <div class="en-subtitle" style="font-size: 0.9rem;">Candid Moments</div>
         </div>
         <div class="candid-strip" id="candid-strip">
@@ -198,7 +250,6 @@
 </div>
 
 <script>
-    // الرابط المحدث (تأكد من وجود /exec في النهاية)
     const API_URL = "https://script.google.com/macros/s/AKfycbze5xnDX4OT6X8i77nJMcx-13GUki5hnD0sPaWAkhaKruAEp0nPlkD_0CMiPC9aSVi8sA/exec";
     
     const wall = document.getElementById('messages-wall');
@@ -206,7 +257,6 @@
     const form = document.getElementById('graduation-form');
     const btn = document.getElementById('submit-btn');
 
-    // وظيفة تكبير الصور
     function setupLightbox() {
         document.querySelectorAll('.clickable-img, .candid-strip img').forEach(el => {
             el.onclick = function() {
@@ -225,7 +275,6 @@
             const res = await fetch(API_URL);
             const data = await res.json();
             
-            // 1. الصور الأساسية
             if (data.images) {
                 if (data.images.hero) document.querySelector('.hero-image').style.backgroundImage = `url('${data.images.hero}')`;
                 if (data.images.img1) document.querySelector('.item-large').style.backgroundImage = `url('${data.images.img1}')`;
@@ -233,7 +282,6 @@
                 if (data.images.img3) document.querySelector('.item-small-2').style.backgroundImage = `url('${data.images.img3}')`;
             }
             
-            // 2. الرسائل
             if (data.messages) {
                 wall.innerHTML = '';
                 data.messages.reverse().forEach(entry => {
@@ -241,7 +289,6 @@
                 });
             }
 
-            // 3. شريط الصور العفوية
             if (data.megaGallery) {
                 strip.innerHTML = '';
                 data.megaGallery.forEach(url => {
@@ -249,7 +296,7 @@
                 });
             }
 
-            setupLightbox(); // تفعيل المكبر بعد التحميل
+            setupLightbox();
 
         } catch (e) { console.log("Loading error..."); }
     }
