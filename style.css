@@ -1,0 +1,130 @@
+/* إعدادات عامة */
+body {
+    background-color: #F7F5F0; /* بيج ورقي مطفي */
+    color: #333333;
+    font-family: 'Tajawal', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+/* الترويسة */
+.header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.header h1 {
+    font-family: 'Amiri', serif; /* خط كلاسيكي فخم */
+    font-size: 2.5rem;
+    color: #2C2C2C;
+    margin-bottom: 10px;
+}
+
+/* الفورم */
+.form-section {
+    background-color: #FFFFFF;
+    padding: 30px;
+    border: 1px solid #EAE6D8; /* إطار خفيف جداً */
+    border-radius: 4px; /* زوايا شبه حادة للفخامة */
+    margin-bottom: 50px;
+}
+
+textarea, input[type="text"] {
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid #D1CDC1;
+    background-color: #FDFCF9;
+    font-family: 'Tajawal', sans-serif;
+    font-size: 1rem;
+    color: #333;
+    box-sizing: border-box;
+    border-radius: 2px;
+    outline: none;
+    transition: border 0.3s ease;
+}
+
+textarea:focus, input[type="text"]:focus {
+    border-color: #8A8373; /* لون ترابي عند التحديد */
+}
+
+textarea {
+    height: 120px;
+    resize: vertical;
+}
+
+.options-group, .checkbox-group {
+    margin-bottom: 20px;
+    font-size: 0.95rem;
+    color: #555;
+}
+
+.radio-label {
+    margin-left: 20px;
+    cursor: pointer;
+}
+
+.submit-btn {
+    background-color: #2C2C2C;
+    color: #FFF;
+    border: none;
+    padding: 12px 30px;
+    font-family: 'Tajawal', sans-serif;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: background-color 0.3s;
+}
+
+.submit-btn:hover {
+    background-color: #1A1A1A;
+}
+
+/* تصميم البطاقة الفخمة */
+.messages-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+.message-card {
+    background-color: #FAF8F5; /* لون مطفي مريح */
+    border: 1px solid #D5CDBD; /* برواز برونزي/ترابي مطفي */
+    padding: 30px;
+    border-radius: 2px;
+    position: relative;
+}
+
+.message-text {
+    font-family: 'Amiri', serif; /* الخط الأدبي للرسالة */
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: #2b2b2b;
+    margin-bottom: 25px;
+}
+
+.card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #EAE6D8;
+    padding-top: 15px;
+}
+
+.sender-signature {
+    font-family: 'Amiri', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: #6B6254; /* لون التوقيع */
+}
+
+.date {
+    font-size: 0.85rem;
+    color: #999;
+}
